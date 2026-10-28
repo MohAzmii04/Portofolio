@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohammad Azmi Abdussyukur | Interactive 3D Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Canvas Three.js -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- UI Overlays -->
+    <div id="ui-container">
+        <!-- Start Screen (Hidden for auto-start) -->
+        <div id="start-screen" class="screen hidden"></div>
+
+        <!-- HUD (In-Game Top Bar & Steering Controls) -->
+        <div id="hud" class="hidden">
+            <div class="hud-top">
+                <div class="hud-left">
+                    <div class="hud-badge score-badge">
+                        <span class="hud-label">SCORE</span>
+                        <span id="hud-score" class="hud-value">0</span>
+                    </div>
+                    <div class="hud-badge speed-badge">
+                        <span class="hud-label">SPEED</span>
+                        <span id="hud-speed" class="hud-value">120 km/h</span>
+                    </div>
+                    <div class="hud-badge distance-badge">
+                        <div class="distance-text-row">
+                            <span class="hud-label">DESTINATION: GARAGE</span>
+                            <span id="hud-distance" class="hud-subvalue">0m / 600m</span>
+                        </div>
+                        <div class="progress-track">
+                            <div id="hud-progress-bar" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hud-right">
+                    <button class="btn theme-toggle-btn" aria-label="Toggle Theme">
+                        <span class="theme-icon">☀️</span>
+                        <span class="theme-text">Light Mode</span>
+                    </button>
+                    <button id="btn-hud-skip" class="btn secondary">
+                        <span>Skip to Portfolio</span>
+                        <span class="btn-arrow">➔</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- In-Game Steering Guide & Touch Controls -->
+            <div class="hud-bottom-controls">
+                <div class="desktop-steering-hint">
+                    <span class="key-cap">A</span>
+                    <span class="key-cap">◀</span>
+                    <span class="hint-label">STEER</span>
+                    <span class="key-cap">▶</span>
+                    <span class="key-cap">D</span>
+                </div>
+
+                <div class="mobile-touch-row">
+                    <button id="btn-touch-left" class="touch-steer-btn" aria-label="Steer Left">◀</button>
+                    <button id="btn-touch-right" class="touch-steer-btn" aria-label="Steer Right">▶</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <div class="modal-card">
+                <div class="crash-icon">💥</div>
+                <h2 class="modal-title">CAR CRASHED!</h2>
+                <p class="modal-subtitle">You hit an obstacle on the cyber highway.</p>
+                
+                <div class="score-summary-box">
+                    <span class="score-summary-label">Final Distance Score</span>
+                    <span id="final-score" class="score-summary-number">0</span>
+                </div>
+
+                <div class="menu-buttons">
+                    <button id="btn-retry" class="btn primary">
+                        <span>🔄 Try Again</span>
+                    </button>
+                    <button id="btn-gameover-skip" class="btn secondary">
+                        <span>Visit Portfolio</span>
+                        <span class="btn-arrow">➔</span>
+                    </button>
+                </div>
+
+                <button class="btn-link theme-toggle-btn" style="margin-top: 15px;">
+                    <span class="theme-icon">☀️</span>
+                    <span class="theme-text">Switch Mode</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Portfolio Garage Screen -->
+        <div id="portfolio-screen" class="screen hidden">
+            <div class="portfolio-container">
+                <header class="portfolio-header">
+                    <div class="brand-group">
+                        <span class="brand-tag">PORTFOLIO GARAGE</span>
+                        <h2 class="brand-title">AZMI.DEV</h2>
+                    </div>
+
+                    <nav class="portfolio-nav">
+                        <button data-target="about" class="active">About</button>
+                        <button data-target="skills">Skills</button>
+                        <button data-target="projects">Projects</button>
+                        <button data-target="contact">Contact</button>
+                    </nav>
+
+                    <div class="header-actions">
+                        <button class="btn theme-toggle-btn small-btn" aria-label="Toggle Theme">
+                            <span class="theme-icon">☀️</span>
+                            <span class="theme-text">Mode</span>
+                        </button>
+                        <button id="btn-back-to-game" class="btn primary small-btn">
+                            <span>🏎️ Back to Track</span>
+                        </button>
+                    </div>
+                </header>
+
+                <main id="portfolio-content" class="portfolio-content">
+                    <!-- Dynamically injected portfolio content -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
